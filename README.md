@@ -21,13 +21,28 @@ You should now be able to see your DAG in Airflow's UI.
 
 Unpause DAG and manually trigger it through UI, or terminal:
 ```
-airflow unpause <your_dag_id>
-airflow dags trigger <your_dag_id>
+airflow unpause [YOUR_DAG_ID]
+airflow dags trigger [YOUR_DAG_ID]
 ```
 Your dag_id is defined in your dag file
 
-### Setup Cloud Composer
-There are multiple options to setup Cloud Composer, such as: <br>
+### Using Cloud Composer
+
+#### Setup Cloud Composer Environment
+Cloud Composer is a managed Apache Airflow provided by Google. There are multiple options to setup, including: <br>
 (1) gcloud CLI: https://cloud.google.com/composer/docs/composer-2/run-apache-airflow-dag <br>
 (2) Use Terraform: https://github.com/nedspnt/terraform-with-gcp
 
+#### Upload Dags
+```
+gcloud composer environments storage dags import \
+  --environment [ENVIRONMENT_NAME] \
+  --location [YOUR_REGION] \
+  --source [LOCAL_PATH_TO_DAG_FILE]
+```
+
+#### Trigger Dags
+```
+gcloud composer environments run [ENVIRONMENT_NAME] \
+  --location [YOUR_REGION] trigger_dag -- [DAG_ID]
+```
