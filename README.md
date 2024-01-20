@@ -26,3 +26,8 @@ airflow dags trigger <your_dag_id>
 ```
 Your dag_id is defined in your dag file
 
+### Setup Cloud Composer
+There are multiple options to setup Cloud Composer, such as: <br>
+(1) gcloud CLI: https://cloud.google.com/composer/docs/composer-2/run-apache-airflow-dag <br>
+(2) Use Terraform: https://github.com/nedspnt/terraform-with-gcp
+
